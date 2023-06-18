@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-import { MainContainer } from '@components/index';
+import { MainContainer, SelectButton } from '@components/index';
 
 const Home: React.FC = () => {
 	return (
