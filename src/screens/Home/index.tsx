@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
-import { MainContainer, SelectButton } from '@components/index';
+import { MainContainer } from '@components/index';
 
 const Home: React.FC = () => {
 	return (
 		<MainContainer>
-			<Text>Home</Text>
+			<Text>Home</Text>]{' '}
 		</MainContainer>
 	);
 };
