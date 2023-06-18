@@ -1,5 +1,7 @@
 import { AccessibilityProps } from 'react-native';
 
+import { ITheme } from './assets/theme';
+
 declare global {
 	export interface IDefaultProps extends Partial<AccessibilityProps> {
 		testID?: string;
@@ -18,11 +20,13 @@ declare global {
 		group: string;
 	}
 
+	export type IThemeProps<T extends {}> = T & {
+		theme: ITheme;
+	};
+
 	namespace ReactNavigation {
 		interface RootParamList {
-			groups: undefined;
-			newGroup: undefined;
-			players: IPlayersRouteParams;
+			home: undefined;
 		}
 	}
 }
