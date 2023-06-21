@@ -1,13 +1,12 @@
 import React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import useActiveClick from '@hooks/useActiveClick';
 
 import * as Styles from './styles';
 
-type IConEnum = 'arrowLeft' | 'arrowUpRight' | 'pencil' | 'plus' | 'trash';
-
-interface IButtonProps extends Partial<Styles.IVariant> {
-	icon?: IConEnum;
+interface IButtonProps extends Partial<Styles.IVariant>, TouchableOpacityProps {
+	icon?: IIconEnum;
 	title: string;
 }
 
@@ -15,10 +14,11 @@ const Button: IComponent<IButtonProps> = ({
 	variant = 'primary',
 	icon,
 	title,
+	...props
 }) => {
 	const activeClickProps = useActiveClick(200);
 
-	const Icons: Record<IConEnum, JSX.Element> = {
+	const Icons: Record<IIconEnum, JSX.Element> = {
 		arrowUpRight: <Styles.TashIcon variant={variant} />,
 		arrowLeft: <Styles.ArrowUpRightIcon variant={variant} />,
 		pencil: <Styles.PencilIcon variant={variant} />,
@@ -27,7 +27,18 @@ const Button: IComponent<IButtonProps> = ({
 	};
 
 	return (
-		<Styles.Container activeOpacity={1} variant={variant} {...activeClickProps}>
+		<Styles.Container
+			accessible
+			accessibilityRole='button'
+			role='button'
+			accessibilityState={{
+				disabled: props?.disabled,
+			}}
+			activeOpacity={1}
+			variant={variant}
+			{...activeClickProps}
+			{...props}
+		>
 			{icon && Icons[icon]}
 
 			<Styles.Title variant={variant}>{title}</Styles.Title>

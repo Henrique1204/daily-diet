@@ -24,6 +24,13 @@ declare global {
 		theme: ITheme;
 	};
 
+	export type IIconEnum =
+		| 'arrowLeft'
+		| 'arrowUpRight'
+		| 'pencil'
+		| 'plus'
+		| 'trash';
+
 	namespace ReactNavigation {
 		interface RootParamList {
 			home: undefined;
