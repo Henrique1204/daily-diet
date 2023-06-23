@@ -7,16 +7,13 @@ export interface IStyleProps {
 	position: 'left' | 'right';
 
 	margin?: string;
+	height?: string;
 	small?: boolean;
 }
 
-export const Container = styled.View<Pick<IStyleProps, 'color' | 'margin'>>`
-	min-height: 110px;
+export const Container = styled.View<Omit<IStyleProps, 'position' | 'small'>>`
 	padding: 16px;
 	border-radius: 8px;
-	margin: ${({ margin }) => `${margin || '0px'}`};
-
-	background: ${({ theme, color }) => theme.colors[color]};
 
 	display: flex;
 	justify-content: center;
@@ -25,6 +22,14 @@ export const Container = styled.View<Pick<IStyleProps, 'color' | 'margin'>>`
 	gap: 8px;
 
 	position: relative;
+
+	${({ theme, height, margin, color }) => css`
+		min-height: ${height || '110px'};
+		max-height: ${height || '110px'};
+		margin: ${margin || '0px'};
+
+		background: ${theme.colors[color]};
+	`}
 `;
 
 export const IconWrapper = styled.View<Pick<IStyleProps, 'position'>>`

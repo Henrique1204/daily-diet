@@ -23,7 +23,7 @@ const App: React.FC = () => {
 	return (
 		<ThemeProvider theme={theme}>
 			<StatusBar
-				barStyle='light-content'
+				barStyle='dark-content'
 				backgroundColor='transparent'
 				translucent
 			/>
