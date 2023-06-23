@@ -6,7 +6,7 @@ export interface IStyleProps {
 	color: IColorsEnum;
 	position: 'left' | 'right';
 
-	margin?: string;
+	customMargin?: string;
 	height?: string;
 	small?: boolean;
 }
@@ -23,13 +23,15 @@ export const Container = styled.View<Omit<IStyleProps, 'position' | 'small'>>`
 
 	position: relative;
 
-	${({ theme, height, margin, color }) => css`
-		min-height: ${height || '110px'};
-		max-height: ${height || '110px'};
-		margin: ${margin || '0px'};
+	${({ theme, height, customMargin, color }) => {
+		return css`
+			min-height: ${height || '110px'};
+			max-height: ${height || '110px'};
+			margin: ${customMargin || '0px'};
 
-		background: ${theme.colors[color]};
-	`}
+			background: ${theme.colors[color]};
+		`;
+	}}
 `;
 
 export const IconWrapper = styled.View<Pick<IStyleProps, 'position'>>`

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { SectionList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
 	Button,
@@ -65,6 +67,12 @@ const mockData = [
 ];
 
 const Home: React.FC = () => {
+	const { navigate } = useNavigation();
+
+	const goToStatistic = (params: IStatisticRouteParams) => {
+		navigate('statistic', params);
+	};
+
 	return (
 		<MainContainer>
 			<Header />
@@ -73,7 +81,13 @@ const Home: React.FC = () => {
 				title='90,86%'
 				description='das refeições dentro da dieta'
 				showIconIn='right'
-				margin='32px 0px 0px'
+				customMargin='32px 0px 0px'
+				onPress={() =>
+					goToStatistic({
+						title: '90,86%',
+						description: 'das refeições dentro da dieta',
+					})
+				}
 			/>
 
 			<Styles.NewMeal>

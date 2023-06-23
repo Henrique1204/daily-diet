@@ -8,10 +8,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 const AppRoutes: React.FC = () => {
 	return (
-		<Navigator
-			initialRouteName='statistic'
-			screenOptions={{ headerShown: false }}
-		>
+		<Navigator initialRouteName='home' screenOptions={{ headerShown: false }}>
 			<Screen name='home' component={Home} />
 			<Screen name='statistic' component={Statistic} />
 		</Navigator>

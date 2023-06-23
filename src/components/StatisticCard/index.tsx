@@ -15,6 +15,7 @@ interface IStatisticCardProps
 
 	variant?: IVariatnEnum;
 	showIconIn?: 'left' | 'right';
+	onPress?: () => void;
 }
 
 const backgroudEnum: Record<IVariatnEnum, IColorsEnum> = {
@@ -35,6 +36,7 @@ const StatisticCard: IComponent<IStatisticCardProps> = ({
 	description,
 	showIconIn,
 	small,
+	onPress,
 	...props
 }) => {
 	return (
@@ -44,6 +46,7 @@ const StatisticCard: IComponent<IStatisticCardProps> = ({
 					<ButtonIcon
 						color={iconColorEnum[variant]}
 						icon={showIconIn === 'left' ? 'arrowLeft' : 'arrowUpRight'}
+						onPress={onPress}
 					/>
 				</Styles.IconWrapper>
 			)}

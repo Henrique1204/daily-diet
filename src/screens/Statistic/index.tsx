@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { IColorsEnum } from '@types_/core/assets/theme';
 
-import * as Styles from './styles';
 import { StatisticCard } from '@components/index';
+
+import * as Styles from './styles';
 
 type IVariatnEnum = 'primary' | 'secondary';
 
@@ -14,13 +16,20 @@ const backgroudEnum: Record<IVariatnEnum, IColorsEnum> = {
 };
 
 const Statistic: IComponent = () => {
+	const route = useRoute();
+	const statisticData = route.params as IStatisticRouteParams;
+
+	const { navigate } = useNavigation();
+
+	const goToHome = () => navigate('home');
+
 	return (
 		<Styles.Container color={backgroudEnum.primary}>
 			<StatisticCard
-				margin='8px'
-				title='90,86%'
-				description='das refeições dentro da dieta'
+				customMargin='8px'
 				showIconIn='left'
+				onPress={goToHome}
+				{...statisticData}
 			/>
 
 			<Styles.ContentBottom></Styles.ContentBottom>

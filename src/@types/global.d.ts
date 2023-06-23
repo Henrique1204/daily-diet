@@ -31,9 +31,16 @@ declare global {
 		| 'plus'
 		| 'trash';
 
+	export interface IStatisticRouteParams {
+		title: string;
+		description: string;
+		variant?: 'primary' | 'secondary';
+	}
+
 	namespace ReactNavigation {
 		interface RootParamList {
 			home: undefined;
+			statistic: IStatisticRouteParams;
 		}
 	}
 }
