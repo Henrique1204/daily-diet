@@ -11,7 +11,7 @@ export interface IStyleProps {
 }
 
 export const Container = styled.View<Pick<IStyleProps, 'color' | 'margin'>>`
-	max-height: 110px;
+	min-height: 110px;
 	padding: 16px;
 	border-radius: 8px;
 	margin: ${({ margin }) => `${margin || '0px'}`};
