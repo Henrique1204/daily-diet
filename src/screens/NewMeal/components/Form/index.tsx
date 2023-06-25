@@ -15,6 +15,8 @@ const Form: IComponent = () => {
 
 	const [selectOption, setSelectOption] = React.useState<string>('');
 
+	const { navigate } = useNavigation();
+
 	const isFormFilled =
 		!isEmptyString(name) &&
 		!isEmptyString(description) &&
@@ -22,7 +24,11 @@ const Form: IComponent = () => {
 		!isEmptyString(hour) &&
 		!isEmptyString(selectOption);
 
-	const handleOnAdd = () => {};
+	const handleOnAdd = () => {
+		navigate('success', {
+			insideDiet: selectOption === 'yes',
+		});
+	};
 
 	return (
 		<>

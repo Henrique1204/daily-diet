@@ -37,11 +37,16 @@ declare global {
 		variant?: 'primary' | 'secondary';
 	}
 
+	export interface ISuccessRouteParams {
+		insideDiet: boolean;
+	}
+
 	namespace ReactNavigation {
 		interface RootParamList {
 			home: undefined;
 			statistic: IStatisticRouteParams;
 			newMeal: undefined;
+			success: ISuccessRouteParams;
 		}
 	}
 }
