@@ -15,7 +15,7 @@ const backgroudEnum: Record<IVariatnEnum, IColorsEnum> = {
 	secondary: 'red_400',
 };
 
-const Statistic: IComponent = () => {
+const Statistic: React.FC = () => {
 	const route = useRoute();
 	const statisticData = route.params as IStatisticRouteParams;
 

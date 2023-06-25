@@ -73,6 +73,8 @@ const Home: React.FC = () => {
 		navigate('statistic', params);
 	};
 
+	const goToNewMeal = () => navigate('newMeal');
+
 	return (
 		<MainContainer>
 			<Header />
@@ -93,7 +95,7 @@ const Home: React.FC = () => {
 			<Styles.NewMeal>
 				<Styles.NewMealLabel>Refeições</Styles.NewMealLabel>
 
-				<Button title='Nova refeição' icon='plus' />
+				<Button title='Nova refeição' icon='plus' onPress={goToNewMeal} />
 			</Styles.NewMeal>
 
 			<SectionList

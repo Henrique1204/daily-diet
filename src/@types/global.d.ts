@@ -41,6 +41,7 @@ declare global {
 		interface RootParamList {
 			home: undefined;
 			statistic: IStatisticRouteParams;
+			newMeal: undefined;
 		}
 	}
 }
