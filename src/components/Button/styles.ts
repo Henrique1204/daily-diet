@@ -28,7 +28,7 @@ export const Container = styled.TouchableOpacity<IVariant & IActive>`
 	align-items: center;
 	gap: 12px;
 
-	${({ theme, variant, active }) => {
+	${({ theme, variant, active, disabled }) => {
 		const color = variant === 'primary' ? 'white' : 'gray_700';
 
 		const background = variant === 'primary' ? 'gray_600' : 'white';
@@ -38,11 +38,13 @@ export const Container = styled.TouchableOpacity<IVariant & IActive>`
 			color: ${theme.colors[color]};
 			background-color: ${theme.colors[background]};
 
+			opacity: ${disabled ? 0.7 : 1};
+
 			${active &&
 			css`
 				color: ${theme.colors.gray_700};
 				background-color: ${theme.colors[backgroundActive]};
-			`}
+			`};
 		`;
 	}}
 `;
