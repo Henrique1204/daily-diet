@@ -7,13 +7,16 @@ import isEmptyString from '@helpers/isEmptyString';
 
 import * as Styles from './styles';
 
-interface IInputProps extends IDefaultProps, TextInputProps {
+interface IInputProps
+	extends IDefaultProps,
+		TextInputProps,
+		Styles.IContainerProps {
 	label: string;
 	placeholderTextColor?: string;
 }
 
 const Input = React.forwardRef<TextInput, IInputProps>(
-	({ label, ...props }, ref) => {
+	({ label, customFlex, ...props }, ref) => {
 		const inputRef = React.useRef<TextInput>(null);
 
 		const [focus, setFocus] = React.useState<boolean>(false);
@@ -28,7 +31,7 @@ const Input = React.forwardRef<TextInput, IInputProps>(
 		};
 
 		return (
-			<Styles.Container>
+			<Styles.Container customFlex={customFlex} textArea={props.textArea}>
 				<TouchableOpacity activeOpacity={1} onPress={handleOnClickLabel}>
 					<Styles.Label>{label}</Styles.Label>
 				</TouchableOpacity>
