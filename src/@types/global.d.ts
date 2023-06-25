@@ -31,6 +31,14 @@ declare global {
 		| 'plus'
 		| 'trash';
 
+	export interface IMealDetailsRouteParams {
+		name: string;
+		description: string;
+		date: string;
+		hour: string;
+		insideDiet: boolean;
+	}
+
 	export interface IStatisticRouteParams {
 		title: string;
 		description: string;
@@ -44,8 +52,9 @@ declare global {
 	namespace ReactNavigation {
 		interface RootParamList {
 			home: undefined;
-			statistic: IStatisticRouteParams;
+			mealDetails: IMealDetailsRouteParams;
 			newMeal: undefined;
+			statistic: IStatisticRouteParams;
 			success: ISuccessRouteParams;
 		}
 	}

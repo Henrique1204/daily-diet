@@ -18,49 +18,18 @@ const mockData = [
 		date: '13.06.2023',
 		data: [
 			{
-				hour: '20:00',
 				title: 'X-tudo',
-				isOutDiet: true,
+				date: '13/06/2023',
+				hour: '20:00',
+				description: 'Alguma coisa',
+				insideDiet: false,
 			},
 			{
-				hour: '20:00',
 				title: 'Lasanha',
-				isOutDiet: true,
-			},
-		],
-	},
-	{
-		date: '12.06.2023',
-		data: [
-			{
+				date: '13/06/2023',
 				hour: '20:00',
-				title: 'Arroz e batata doce',
-				isOutDiet: false,
-			},
-		],
-	},
-	{
-		date: '13.06.2023',
-		data: [
-			{
-				hour: '20:00',
-				title: 'X-tudo',
-				isOutDiet: true,
-			},
-			{
-				hour: '20:00',
-				title: 'Lasanha',
-				isOutDiet: true,
-			},
-		],
-	},
-	{
-		date: '12.06.2023',
-		data: [
-			{
-				hour: '20:00',
-				title: 'Arroz e batata doce',
-				isOutDiet: false,
+				description: 'Alguma coisa',
+				insideDiet: true,
 			},
 		],
 	},
@@ -101,13 +70,7 @@ const Home: React.FC = () => {
 			<SectionList
 				sections={mockData}
 				keyExtractor={({ title }, index) => title + index}
-				renderItem={({ item }) => (
-					<MealCard
-						hour={item.hour}
-						title={item.title}
-						variant={item.isOutDiet ? 'secondary' : 'primary'}
-					/>
-				)}
+				renderItem={({ item }) => <MealCard {...item} />}
 				renderSectionHeader={({ section: { date } }) => (
 					<Styles.SectionTitle>{date}</Styles.SectionTitle>
 				)}

@@ -8,7 +8,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text<{ insideDiet: boolean }>`
 	${({ theme, insideDiet }) => css`
-		margin-bottom: 16px;
+		margin-bottom: 8px;
 
 		font-size: ${theme.fontSize.xl1};
 		font-family: ${theme.fontFamily.bold};
