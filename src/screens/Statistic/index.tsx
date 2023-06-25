@@ -32,7 +32,37 @@ const Statistic: IComponent = () => {
 				{...statisticData}
 			/>
 
-			<Styles.ContentBottom></Styles.ContentBottom>
+			<Styles.ContentBottom>
+				<Styles.Title>Estatísticas gerais</Styles.Title>
+
+				<StatisticCard
+					title='4'
+					description='melhor sequência de pratos dentro da dieta'
+					variant='neutral'
+				/>
+
+				<StatisticCard
+					title='109'
+					description='refeições registradas'
+					variant='neutral'
+					customMargin='16px 0 0'
+				/>
+
+				<Styles.StatisticRow>
+					<StatisticCard
+						title='32'
+						description='refeições dentro da dieta'
+						small
+					/>
+
+					<StatisticCard
+						title='77'
+						description='refeições fora da dieta'
+						variant='secondary'
+						small
+					/>
+				</Styles.StatisticRow>
+			</Styles.ContentBottom>
 		</Styles.Container>
 	);
 };
