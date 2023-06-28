@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "ignite-team",
-		"slug": "ignite-team",
+		"name": "dailu-diet",
+		"slug": "dailu-diet",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",

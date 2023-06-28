@@ -1,19 +1,37 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Button, Input, SelectButton } from '@components/index';
 
 import * as Styles from './styles';
 import isEmptyString from '@helpers/isEmptyString';
 
+const OPTIONS_ENUM = {
+	YES: 'yes',
+	NO: 'no',
+};
+
 const Form: IComponent = () => {
-	const [name, setName] = React.useState<string>('');
-	const [description, setDescription] = React.useState<string>('');
+	const route = useRoute();
 
-	const [date, setDate] = React.useState<string>('');
-	const [hour, setHour] = React.useState<string>('');
+	const editInfos = route.params as IMealInfos;
 
-	const [selectOption, setSelectOption] = React.useState<string>('');
+	const selectOptionEditValue = editInfos?.insideDiet
+		? OPTIONS_ENUM.YES
+		: OPTIONS_ENUM.NO;
+
+	const [name, setName] = React.useState<string>(editInfos?.name || '');
+
+	const [description, setDescription] = React.useState<string>(
+		editInfos?.description || ''
+	);
+
+	const [date, setDate] = React.useState<string>(editInfos?.date || '');
+	const [hour, setHour] = React.useState<string>(editInfos?.hour || '');
+
+	const [selectOption, setSelectOption] = React.useState<string>(
+		editInfos?.insideDiet ? selectOptionEditValue : ''
+	);
 
 	const { navigate } = useNavigation();
 
@@ -64,14 +82,14 @@ const Form: IComponent = () => {
 					<Styles.InsideDietSelects>
 						<SelectButton
 							title='Sim'
-							value='yes'
+							value={OPTIONS_ENUM.YES}
 							active={selectOption === 'yes'}
 							onChange={setSelectOption}
 						/>
 
 						<SelectButton
 							title='Não'
-							value='no'
+							value={OPTIONS_ENUM.NO}
 							variant='secondary'
 							active={selectOption === 'no'}
 							onChange={setSelectOption}
@@ -81,7 +99,7 @@ const Form: IComponent = () => {
 			</Styles.Form>
 
 			<Button
-				title='Cadastrar refeição'
+				title={editInfos ? 'Salvar alterações' : 'Cadastrar refeição'}
 				disabled={!isFormFilled}
 				onPress={handleOnAdd}
 			/>

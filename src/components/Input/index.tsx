@@ -39,6 +39,7 @@ const Input = React.forwardRef<TextInput, IInputProps>(
 				<Styles.Input
 					ref={ref || inputRef}
 					active={filled || focus}
+					multiline={props.textArea}
 					onFocus={() => setFocus(true)}
 					onBlur={() => setFocus(false)}
 					{...props}

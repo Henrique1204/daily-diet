@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-native';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -11,9 +12,27 @@ const MealDetails: React.FC = () => {
 	const { navigate } = useNavigation();
 
 	const { insideDiet, date, description, hour, name } =
-		route.params as IMealDetailsRouteParams;
+		route.params as IMealInfos;
 
 	const goToHome = () => navigate('home');
+
+	const goToEditMeal = () => {
+		navigate('mealForm', { insideDiet, date, description, hour, name });
+	};
+
+	const handleOnRemove = () => {
+		const _onRemove = async () => {
+			try {
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		Alert.alert('', 'Deseja realmente excluir o registro da refeição?', [
+			{ text: 'Cancelar' },
+			{ text: 'Sim, exluir', onPress: _onRemove },
+		]);
+	};
 
 	return (
 		<Styles.Container variant={insideDiet ? 'primary' : 'secondary'}>
@@ -43,8 +62,18 @@ const MealDetails: React.FC = () => {
 				</Styles.TagContainer>
 
 				<Styles.GroupButtons>
-					<Button title='Editar refeição' icon='pencil' />
-					<Button title='Excluir refeição' icon='trash' variant='secondary' />
+					<Button
+						title='Editar refeição'
+						icon='pencil'
+						onPress={goToEditMeal}
+					/>
+
+					<Button
+						title='Excluir refeição'
+						icon='trash'
+						variant='secondary'
+						onPress={handleOnRemove}
+					/>
 				</Styles.GroupButtons>
 			</Styles.ContentBottom>
 		</Styles.Container>

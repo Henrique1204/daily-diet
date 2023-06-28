@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 		navigate('statistic', params);
 	};
 
-	const goToNewMeal = () => navigate('newMeal');
+	const goToNewMeal = () => navigate('mealForm');
 
 	return (
 		<MainContainer>
