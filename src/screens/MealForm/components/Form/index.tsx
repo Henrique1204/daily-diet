@@ -5,6 +5,8 @@ import { IMealEntity } from '@types_/core/storage/meal';
 
 import isEmptyString from '@helpers/isEmptyString';
 
+import { mealAdd, mealUpdate } from '@storage/meal';
+
 import { Button, Input, SelectButton } from '@components/index';
 
 import * as Styles from './styles';
@@ -17,7 +19,7 @@ const OPTIONS_ENUM = {
 const Form: IComponent = () => {
 	const route = useRoute();
 
-	const editInfos = route.params as IMealEntity;
+	const editInfos = route.params as IMealEntity | undefined;
 
 	const selectOptionEditValue = editInfos?.insideInDiet
 		? OPTIONS_ENUM.YES
@@ -46,9 +48,36 @@ const Form: IComponent = () => {
 		!isEmptyString(selectOption);
 
 	const handleOnAdd = () => {
-		navigate('success', {
-			insideDiet: selectOption === 'yes',
-		});
+		try {
+			mealAdd({
+				date,
+				description,
+				hour,
+				insideInDiet: selectOption === OPTIONS_ENUM.YES,
+				name,
+			});
+
+			navigate('success', {
+				insideDiet: selectOption === OPTIONS_ENUM.YES,
+			});
+		} catch (_) {}
+	};
+
+	const handleOnUpdate = () => {
+		try {
+			const mealData = {
+				id: editInfos!.id,
+				date,
+				description,
+				hour,
+				insideInDiet: selectOption === OPTIONS_ENUM.YES,
+				name,
+			};
+
+			mealUpdate(mealData);
+
+			navigate('mealDetails', mealData);
+		} catch (_) {}
 	};
 
 	return (
@@ -104,7 +133,7 @@ const Form: IComponent = () => {
 			<Button
 				title={editInfos ? 'Salvar alterações' : 'Cadastrar refeição'}
 				disabled={!isFormFilled}
-				onPress={handleOnAdd}
+				onPress={editInfos ? handleOnUpdate : handleOnAdd}
 			/>
 		</>
 	);
