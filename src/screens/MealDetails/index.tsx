@@ -8,6 +8,7 @@ import { IMealEntity } from '@types_/core/storage/meal';
 import { Button, InternalHeader } from '@components/index';
 
 import * as Styles from './styles';
+import { mealRemvoe } from '@storage/meal';
 
 const MealDetails: React.FC = () => {
 	const route = useRoute();
@@ -25,6 +26,9 @@ const MealDetails: React.FC = () => {
 	const handleOnRemove = () => {
 		const _onRemove = async () => {
 			try {
+				await mealRemvoe(id);
+
+				goToHome();
 			} catch (error) {
 				console.error(error);
 			}
@@ -32,7 +36,7 @@ const MealDetails: React.FC = () => {
 
 		Alert.alert('', 'Deseja realmente excluir o registro da refeição?', [
 			{ text: 'Cancelar' },
-			{ text: 'Sim, exluir', onPress: _onRemove },
+			{ text: 'Sim, excluir', onPress: _onRemove },
 		]);
 	};
 
