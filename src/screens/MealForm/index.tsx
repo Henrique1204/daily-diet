@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import { IMealEntity } from '@types_/core/storage/meal';
+
 import { InternalHeader } from '@components/index';
 
 import * as Styles from './styles';
@@ -11,7 +13,7 @@ const MealForm: React.FC = () => {
 	const route = useRoute();
 	const { navigate } = useNavigation();
 
-	const editInfos = route.params as IMealInfos;
+	const editInfos = route.params as IMealEntity;
 
 	const goBack = () => {
 		if (editInfos) return navigate('mealDetails', editInfos);

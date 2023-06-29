@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// @ts-ignore
 import { IMealEntity } from '@types_/core/storage/meal';
 
 import { MEAL_COLLECTION } from '../storeageConfig';

@@ -1,10 +1,13 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import { IMealEntity } from '@types_/core/storage/meal';
+
+import isEmptyString from '@helpers/isEmptyString';
+
 import { Button, Input, SelectButton } from '@components/index';
 
 import * as Styles from './styles';
-import isEmptyString from '@helpers/isEmptyString';
 
 const OPTIONS_ENUM = {
 	YES: 'yes',
@@ -14,9 +17,9 @@ const OPTIONS_ENUM = {
 const Form: IComponent = () => {
 	const route = useRoute();
 
-	const editInfos = route.params as IMealInfos;
+	const editInfos = route.params as IMealEntity;
 
-	const selectOptionEditValue = editInfos?.insideDiet
+	const selectOptionEditValue = editInfos?.insideInDiet
 		? OPTIONS_ENUM.YES
 		: OPTIONS_ENUM.NO;
 
@@ -30,7 +33,7 @@ const Form: IComponent = () => {
 	const [hour, setHour] = React.useState<string>(editInfos?.hour || '');
 
 	const [selectOption, setSelectOption] = React.useState<string>(
-		editInfos?.insideDiet ? selectOptionEditValue : ''
+		editInfos?.insideInDiet ? selectOptionEditValue : ''
 	);
 
 	const { navigate } = useNavigation();

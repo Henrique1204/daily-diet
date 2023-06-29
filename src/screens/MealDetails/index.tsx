@@ -3,6 +3,8 @@ import { Alert } from 'react-native';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import { IMealEntity } from '@types_/core/storage/meal';
+
 import { Button, InternalHeader } from '@components/index';
 
 import * as Styles from './styles';
@@ -11,13 +13,13 @@ const MealDetails: React.FC = () => {
 	const route = useRoute();
 	const { navigate } = useNavigation();
 
-	const { insideDiet, date, description, hour, name } =
-		route.params as IMealInfos;
+	const { insideInDiet, date, description, hour, name, id } =
+		route.params as IMealEntity;
 
 	const goToHome = () => navigate('home');
 
 	const goToEditMeal = () => {
-		navigate('mealForm', { insideDiet, date, description, hour, name });
+		navigate('mealForm', { id, insideInDiet, date, description, hour, name });
 	};
 
 	const handleOnRemove = () => {
@@ -35,7 +37,7 @@ const MealDetails: React.FC = () => {
 	};
 
 	return (
-		<Styles.Container variant={insideDiet ? 'primary' : 'secondary'}>
+		<Styles.Container variant={insideInDiet ? 'primary' : 'secondary'}>
 			<InternalHeader title='Refeição' onPress={goToHome} />
 
 			<Styles.ContentBottom>
@@ -54,10 +56,10 @@ const MealDetails: React.FC = () => {
 				</Styles.GroupInfo>
 
 				<Styles.TagContainer>
-					<Styles.Circle variant={insideDiet ? 'primary' : 'secondary'} />
+					<Styles.Circle variant={insideInDiet ? 'primary' : 'secondary'} />
 
 					<Styles.TagLabel>
-						{insideDiet ? 'dentro da dieta' : 'fora da dieta'}
+						{insideInDiet ? 'dentro da dieta' : 'fora da dieta'}
 					</Styles.TagLabel>
 				</Styles.TagContainer>
 

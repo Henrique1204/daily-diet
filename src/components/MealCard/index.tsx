@@ -2,32 +2,28 @@ import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
+import { IMealEntity } from '@types_/core/storage/meal';
+
 import * as Styles from './styles';
 
-interface IMealCardProps {
-	hour: string;
-	title: string;
-	date: string;
-	description: string;
-	insideDiet: boolean;
-}
-
-const MealCard: IComponent<IMealCardProps> = ({
+const MealCard: IComponent<IMealEntity> = ({
+	id,
 	hour,
-	title,
+	name,
 	description,
 	date,
-	insideDiet,
+	insideInDiet,
 }) => {
 	const { navigate } = useNavigation();
 
 	const goToMealDetails = () => {
 		navigate('mealDetails', {
-			name: title,
+			id,
+			name,
 			date,
 			description,
 			hour,
-			insideDiet,
+			insideInDiet,
 		});
 	};
 
@@ -37,9 +33,9 @@ const MealCard: IComponent<IMealCardProps> = ({
 
 			<Styles.Separator />
 
-			<Styles.Title>{title}</Styles.Title>
+			<Styles.Title>{name}</Styles.Title>
 
-			<Styles.Circle variant={insideDiet ? 'primary' : 'secondary'} />
+			<Styles.Circle variant={insideInDiet ? 'primary' : 'secondary'} />
 		</Styles.Container>
 	);
 };

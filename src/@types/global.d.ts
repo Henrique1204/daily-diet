@@ -1,6 +1,8 @@
 import { AccessibilityProps } from 'react-native';
 
-import { ITheme } from './assets/theme';
+import { ITheme } from './core/assets/theme';
+
+import { IMealEntity } from './core/storage/meal';
 
 declare global {
 	export interface IDefaultProps extends Partial<AccessibilityProps> {
@@ -31,14 +33,6 @@ declare global {
 		| 'plus'
 		| 'trash';
 
-	export interface IMealInfos {
-		name: string;
-		description: string;
-		date: string;
-		hour: string;
-		insideDiet: boolean;
-	}
-
 	export interface IStatisticRouteParams {
 		title: string;
 		description: string;
@@ -52,8 +46,8 @@ declare global {
 	namespace ReactNavigation {
 		interface RootParamList {
 			home: undefined;
-			mealDetails: IMealInfos;
-			mealForm?: IMealInfos;
+			mealDetails: IMealEntity;
+			mealForm?: IMealEntity;
 			statistic: IStatisticRouteParams;
 			success: ISuccessRouteParams;
 		}

@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { SectionList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+
+import groupMealsByDate, { IGroupMealsByDate } from '@helpers/groupByDate';
+
+import { mealsSelectAll } from '@storage/meal';
 
 import {
 	Button,
@@ -13,29 +17,9 @@ import {
 
 import * as Styles from './styles';
 
-const mockData = [
-	{
-		date: '13.06.2023',
-		data: [
-			{
-				title: 'X-tudo',
-				date: '13/06/2023',
-				hour: '20:00',
-				description: 'Alguma coisa',
-				insideDiet: false,
-			},
-			{
-				title: 'Lasanha',
-				date: '13/06/2023',
-				hour: '20:00',
-				description: 'Alguma coisa',
-				insideDiet: true,
-			},
-		],
-	},
-];
-
 const Home: React.FC = () => {
+	const [mealsList, setMealsList] = React.useState<IGroupMealsByDate[]>([]);
+
 	const { navigate } = useNavigation();
 
 	const goToStatistic = (params: IStatisticRouteParams) => {
@@ -43,6 +27,18 @@ const Home: React.FC = () => {
 	};
 
 	const goToNewMeal = () => navigate('mealForm');
+
+	const fetchMeals = async () => {
+		const meals = await mealsSelectAll();
+
+		setMealsList(groupMealsByDate(meals));
+	};
+
+	useFocusEffect(
+		React.useCallback(() => {
+			fetchMeals();
+		}, [])
+	);
 
 	return (
 		<MainContainer>
@@ -68,8 +64,8 @@ const Home: React.FC = () => {
 			</Styles.NewMeal>
 
 			<SectionList
-				sections={mockData}
-				keyExtractor={({ title }, index) => title + index}
+				sections={mealsList}
+				keyExtractor={({ id }) => id.toString()}
 				renderItem={({ item }) => <MealCard {...item} />}
 				renderSectionHeader={({ section: { date } }) => (
 					<Styles.SectionTitle>{date}</Styles.SectionTitle>

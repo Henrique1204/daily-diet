@@ -1,4 +1,4 @@
-interface IMealEntity {
+export interface IMealEntity {
 	id: number;
 	name: string;
 	description: string;
